@@ -1,0 +1,17 @@
+{
+    "name": "HoloInteractive.iOS.MultipeerConnectivity",
+    "rootNamespace": "HoloInteractive.iOS.MultipeerConnectivity",
+    "references": [],
+    "includePlatforms": [
+        "Editor",
+        "iOS"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
