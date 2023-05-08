@@ -6,7 +6,14 @@
   "unity": "2021.3",
   "keywords": ["apple", "multipeerconnectivity", "unity"],
   "author": {
-    "name": "Yuchen Zhang",
-    "email": "yuchenz27@outlook.com"
-  }
+    "name": "Holo Interactive",
+    "email": "yuchen@holoi.com"
+  },
+  "samples": [
+    {
+      "displayName": "Basics",
+      "description": "Contains sample project on how to setup a basic network connection",
+      "path": "Samples~/Basics"
+    }
+  ]
 }

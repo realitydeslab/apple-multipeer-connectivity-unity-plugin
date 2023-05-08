@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2023 Holo Interactive <dev@holoi.com>
+// SPDX-FileContributor: Yuchen Zhang <yuchen@holoi.com>
+// SPDX-License-Identifier: MIT
+
 #import "MultipeerSession.h"
 
 @implementation MultipeerSession
@@ -26,13 +30,17 @@
 
 - (void)session:(nonnull MCSession *)session peer:(nonnull MCPeerID *)peerID didChangeState:(MCSessionState)state {
     if (_onPeerDidChangeStateCallback) {
-        _onPeerDidChangeStateCallback((__bridge void *)self, (__bridge_retained void *)peerID, state);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.onPeerDidChangeStateCallback((__bridge void *)self, (__bridge_retained void *)peerID, state);
+        });
     }
 }
 
 - (void)session:(nonnull MCSession *)session didReceiveData:(nonnull NSData *)data fromPeer:(nonnull MCPeerID *)peerID {
     if (_onDidReceiveDataCallback) {
-        _onDidReceiveDataCallback((__bridge void *)self, (__bridge_retained void *)data, (__bridge void *)peerID);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.onDidReceiveDataCallback((__bridge void *)self, (__bridge_retained void *)data, (__bridge void *)peerID);
+        });
     }
 }
 

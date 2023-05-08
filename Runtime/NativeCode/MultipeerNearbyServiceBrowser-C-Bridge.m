@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2023 Holo Interactive <dev@holoi.com>
+// SPDX-FileContributor: Yuchen Zhang <yuchen@holoi.com>
+// SPDX-License-Identifier: MIT
+
 #import "MultipeerNearbyServiceBrowser.h"
 #import "MultipeerSession.h"
 
@@ -21,10 +25,12 @@ void HoloInteractiveMC_MultipeerNearbyServiceBrowser_stopBrowsingForPeers(void *
 
 void HoloInteractiveMC_MultipeerNearbyServiceBrowser_registerCallbacks(void *self,
                                                                        OnFoundPeerCallback onFoundPeerCallback,
-                                                                       OnLostPeerCallback onLostPeerCallback) {
+                                                                       OnLostPeerCallback onLostPeerCallback,
+                                                                       OnDidNotStartBrowsingForPeersCallback onDidNotStartBrowsingForPeersCallback) {
     MultipeerNearbyServiceBrowser *browser = (__bridge MultipeerNearbyServiceBrowser *)self;
     [browser setOnFoundPeerCallback: onFoundPeerCallback];
     [browser setOnLostPeerCallback: onLostPeerCallback];
+    [browser setOnDidNotStartBrowsingForPeersCallback: onDidNotStartBrowsingForPeersCallback];
 }
 
 void HoloInteractiveMC_MultipeerNearbyServiceBrowser_invitePeer(void *self, void *peerIDPtr, void *sessionPtr, void *contextPtr, double timeout) {

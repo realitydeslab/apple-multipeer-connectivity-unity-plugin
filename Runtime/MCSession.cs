@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2023 Holo Interactive <dev@holoi.com>
+// SPDX-FileContributor: Yuchen Zhang <yuchen@holoi.com>
+// SPDX-License-Identifier: MIT
+
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
@@ -103,7 +107,6 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
                 switch (state)
                 {
                     case MCSessionState.NotConnected:
-                        session.OnPeerDidChangeState.Invoke(peerID, state);
                         if (session.m_ConnectingPeers.Contains(peerID))
                         {
                             session.m_ConnectingPeers.Remove(peerID);
@@ -117,14 +120,13 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
                         break;
                     case MCSessionState.Connecting:
                         session.m_ConnectingPeers.Add(peerID);
-                        session.OnPeerDidChangeState.Invoke(peerID, state);
                         break;
                     case MCSessionState.Connected:
                         session.m_ConnectingPeers.Remove(peerID);
                         session.m_ConnectedPeers.Add(peerID);
-                        session.OnPeerDidChangeState.Invoke(peerID, state);
                         break;
                 }
+                session.OnPeerDidChangeState?.Invoke(peerID, state);
             }
         }
 
@@ -136,7 +138,7 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
                 if (s_SessionInstances.TryGetValue(sessionPtr, out MCSession session))
                 {
                     MCPeerID peerID = new(peerIDPtr);
-                    session.OnDidReceiveData.Invoke(data, peerID);
+                    session.OnDidReceiveData?.Invoke(data, peerID);
                 }
             } 
         }

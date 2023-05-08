@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2023 Holo Interactive <dev@holoi.com>
+// SPDX-FileContributor: Yuchen Zhang <yuchen@holoi.com>
+// SPDX-License-Identifier: MIT
+
 #import "MultipeerNearbyServiceAdvertiser.h"
 
 @implementation MultipeerNearbyServiceAdvertiser
@@ -25,7 +29,9 @@ MCNearbyServiceAdvertiser *m_NearbyServiceAdvertiser;
 - (void)advertiser:(nonnull MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(nonnull MCPeerID *)peerID withContext:(nullable NSData *)context invitationHandler:(nonnull void (^)(BOOL, MCSession * _Nullable))invitationHandler
 {
     if (_onDidReceiveInvitationFromPeerCallback) {
-        _onDidReceiveInvitationFromPeerCallback((__bridge void *)self, (__bridge_retained void *)peerID, (__bridge_retained void *)context, (__bridge_retained void *)invitationHandler);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.onDidReceiveInvitationFromPeerCallback((__bridge void *)self, (__bridge_retained void *)peerID, (__bridge_retained void *)context, (__bridge_retained void *)invitationHandler);
+        });
     }
 }
 

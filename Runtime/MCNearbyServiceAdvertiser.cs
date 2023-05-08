@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2023 Holo Interactive <dev@holoi.com>
+// SPDX-FileContributor: Yuchen Zhang <yuchen@holoi.com>
+// SPDX-License-Identifier: MIT
+
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
@@ -17,11 +21,13 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
     {
         IntPtr m_Ptr;
 
-        List<PendingInvitation> m_PendingInvitations;
+        List<PendingInvitation> m_PendingInvitations = new();
 
         static Dictionary<IntPtr, MCNearbyServiceAdvertiser> s_AdvertiserInstances = new();
 
         public bool Created => m_Ptr != IntPtr.Zero;
+
+        public bool IsAdvertisingPeer = false;
 
         public List<PendingInvitation> PendingInvitations => m_PendingInvitations;
 
@@ -53,30 +59,21 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
 
         public void StartAdvertisingPeer()
         {
-            m_PendingInvitations = new();
             StartAdvertisingPeer(m_Ptr);
+            IsAdvertisingPeer = true;
         }
 
         public void StopAdvertisingPeer()
         {
+            ReleasePendingInvitations();
             StopAdvertisingPeer(m_Ptr);
+            IsAdvertisingPeer = false;
         }
 
         public void HandleInvitation(InvitationHandler invitationHandler, bool accept, MCSession session)
         {
             HandleInvitation_Native(invitationHandler, accept, session.NativePtr);
             ReleasePendingInvitation(invitationHandler);
-        }
-
-        public void Dispose()
-        {
-            if (m_Ptr != IntPtr.Zero)
-            {
-                s_AdvertiserInstances.Remove(m_Ptr);
-                ReleasePendingInvitations();
-                NativeApi.CFRelease(ref m_Ptr);
-                m_Ptr = IntPtr.Zero;
-            }
         }
 
         private void ReleasePendingInvitation(InvitationHandler invitationHandler)
@@ -103,6 +100,17 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
                 pendingInvitation.InvitationHandler.Dispose();
             }
             m_PendingInvitations.Clear();
+        }
+
+        public void Dispose()
+        {
+            if (m_Ptr != IntPtr.Zero)
+            {
+                StopAdvertisingPeer();
+                s_AdvertiserInstances.Remove(m_Ptr);
+                NativeApi.CFRelease(ref m_Ptr);
+                m_Ptr = IntPtr.Zero;
+            }
         }
 
         public event Action<MCPeerID, NSData, InvitationHandler> OnDidReceiveInvitationFromPeer;
@@ -134,7 +142,7 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
                     InvitationHandler = new InvitationHandler(invitationHandlerPtr)
                 };
                 advertiser.m_PendingInvitations.Add(pendingInvitation);
-                advertiser.OnDidReceiveInvitationFromPeer.Invoke(pendingInvitation.PeerID, pendingInvitation.Context, pendingInvitation.InvitationHandler);
+                advertiser.OnDidReceiveInvitationFromPeer?.Invoke(pendingInvitation.PeerID, pendingInvitation.Context, pendingInvitation.InvitationHandler);
             }
         }
     }
