@@ -1,10 +1,14 @@
 {
   "name": "com.holoi.apple-multipeer-connectivity-unity-plugin",
   "version": "0.1.0",
-  "displayName": "Apple Multipeer Connectivity Unity Plugin",
+  "displayName": "Apple Multipeer Connectivity Plugin",
   "description": "A Unity plugin to wrap Apple's MultipeerConnectivity framework for use in Unity projects.",
   "unity": "2021.3",
-  "keywords": ["apple", "multipeerconnectivity", "unity"],
+  "keywords": [
+    "apple",
+    "multipeerconnectivity",
+    "unity"
+  ],
   "author": {
     "name": "Holo Interactive",
     "email": "yuchen@holoi.com"
@@ -14,6 +18,11 @@
       "displayName": "Basics",
       "description": "Contains sample project on how to setup a basic network connection",
       "path": "Samples~/Basics"
+    },
+    {
+      "displayName": "AR Collaborative Session",
+      "description": "Contains sample project on how to build an ARKit multiuser collaborative session using this package",
+      "path": "Samples~/ARCollaborativeSession"
     }
   ]
 }

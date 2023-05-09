@@ -18,7 +18,7 @@ void* HoloInteractiveMC_NSData_createWithBytes(void* bytes, int length)
     return (__bridge_retained void*)data;
 }
 
-void* HoloInteracitveMC_NSData_createWithBytesNoCopy(void* bytes, int length, bool freeWhenDone)
+void* HoloInteractiveMC_NSData_createWithBytesNoCopy(void* bytes, int length, bool freeWhenDone)
 {
     NSData* data = [[NSData alloc] initWithBytesNoCopy:bytes
                                                 length:length

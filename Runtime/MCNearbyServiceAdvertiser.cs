@@ -65,9 +65,9 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
 
         public void StopAdvertisingPeer()
         {
-            ReleasePendingInvitations();
             StopAdvertisingPeer(m_Ptr);
             IsAdvertisingPeer = false;
+            ReleasePendingInvitations();
         }
 
         public void HandleInvitation(InvitationHandler invitationHandler, bool accept, MCSession session)

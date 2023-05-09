@@ -57,8 +57,8 @@ namespace HoloInteractive.iOS.MultipeerConnectivity.Samples.Basics
 
         public void Shutdown()
         {
-            m_Session.Dispose();
             m_PeerID.Dispose();
+            m_Session.Dispose();
             m_Advertiser.Dispose();
             m_Browser.Dispose();
 

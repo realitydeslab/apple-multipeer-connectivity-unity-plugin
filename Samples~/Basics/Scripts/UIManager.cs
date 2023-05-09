@@ -46,10 +46,12 @@ namespace HoloInteractive.iOS.MultipeerConnectivity.Samples.Basics
 
         private float m_MessagePromptLastShowTime;
 
-        private float MESSAGE_PROMPT_DURATION = 3;
+        private const float MESSAGE_PROMPT_DURATION = 3;
 
         private void Start()
         {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+
             m_MCManager.OnInitialized += OnInitialized;
             m_MCManager.OnShutdown += OnShutdown;
 

@@ -51,9 +51,9 @@ namespace HoloInteractive.iOS.MultipeerConnectivity
 
         public void StopBrowsingForPeers()
         {
-            ReleaseFoundPeers();
             StopBrowsingForPeers(m_Ptr);
             IsBrowsingForPeers = false;
+            ReleaseFoundPeers();
         }
 
         public void InvitePeer(MCPeerID peerID, MCSession session, NSData context = new NSData(), double timeout = 30)
