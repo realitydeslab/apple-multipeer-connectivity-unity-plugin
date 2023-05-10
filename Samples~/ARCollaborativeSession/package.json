@@ -1,0 +1,12 @@
+{
+  "name": "com.holoi.apple-multipeer-connectivity-unity-plugin.ar-collaborative-session",
+  "displayName": "AR Collaborative Session",
+  "version": "0.1.0",
+  "unity": "2021.3",
+  "description": "A sample project showcasing how to build an ARKit multiuser collaborative session",
+  "keywords": ["ar", "arfoundation", "arkit", "multipeer-connectivity"],
+  "dependencies": {
+    "com.unity.xr.arfoundation": "5.0.5",
+    "com.unity.xr.arkit": "5.0.5"
+  }
+}
