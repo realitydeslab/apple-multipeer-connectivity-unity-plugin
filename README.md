@@ -33,7 +33,7 @@ To establish a Multipeer Connectivity session, we first create a `MCPeerID` obje
 MCPeerID m_PeerID;
 MCSession m_MCSession;
 
-private void InitMCSession() 
+public void InitMCSession() 
 {
     m_PeerID = new MCPeerID("your-device-name");
     m_MCSession = new MCSession(m_PeerID);
