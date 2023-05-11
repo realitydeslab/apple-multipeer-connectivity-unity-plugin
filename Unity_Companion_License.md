@@ -1,4 +1,5 @@
 Valid-License-Identifier: LicenseRef-Unity-Companion-License
+
 License-Text:
 
 AR Foundation Samples copyright © 2020 Unity Technologies ApS
