@@ -1,5 +1,5 @@
 {
-  "name": "com.holoi.apple-multipeer-connectivity-unity-plugin",
+  "name": "com.holoi.ios.multipeer-connectivity-unity-plugin",
   "version": "0.1.0",
   "displayName": "Apple Multipeer Connectivity Plugin",
   "description": "A C# wrapper of Apple's Multipeer Connectivity to allow using iOS native framework in Unity.",
