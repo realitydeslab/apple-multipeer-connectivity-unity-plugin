@@ -10,14 +10,14 @@ The main goal of this package is to mirror the native Objective-C API to C# in a
 
 You can install this package from the following git URL in Package Manager.
 ```
-https://github.com/holoi/AppleMultipeerConnectivityUnityPlugin.git
+https://github.com/holoi/apple-multipeer-connectivity-unity-plugin.git
 ```
-<img width="300" alt="image" src="https://github.com/holoi/AppleMultipeerConnectivityUnityPlugin/assets/44870300/2641ed15-97b8-4a4f-ae22-02a6cb578095">
-<img width="323" alt="image" src="https://github.com/holoi/AppleMultipeerConnectivityUnityPlugin/assets/44870300/1627f9f8-4691-46ab-8597-b7db32614dbf">
+<img width="286" alt="image" src="https://github.com/holoi/apple-multipeer-connectivity-unity-plugin/assets/44870300/212e2158-d97f-42b7-9c5c-0f09ed040151">
+<img width="333" alt="image" src="https://github.com/holoi/apple-multipeer-connectivity-unity-plugin/assets/44870300/ecac6610-ce06-4b7c-b3cb-036e51fc54e5">
 
 or by directly adding the following line to the `Packages/manifest.json` file.
 ```
-"com.holoi.apple-multipeer-connectivity-unity-plugin": "https://github.com/holoi/AppleMultipeerConnectivityUnityPlugin.git"
+"com.holoi.ios.multipeer-connectivity": "https://github.com/holoi/apple-multipeer-connectivity-unity-plugin.git"
 ```
 
 ## How to Use This Package
